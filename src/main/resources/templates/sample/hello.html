@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>타임리프 템플릿 : spring el 테스트</h3>
+<hr/>
+<h3 th:text="${message}"></h3> <!--th: 속성이용하기 -->
+<!-- 반복 -->
+<ul>
+    <li th:each="temp:${list}" th:text="${temp}"></li>
+</ul>
+<hr/>
+<h3>[[${message}]]</h3> <!-- 인라인 표기 -->
+<ul>
+    <th:block th:each="str,status:${list}">
+        <li>[[${str}]] - [[${status.index}]] </li>
+    </th:block>
+
+
+</ul>
+
+</body>
+</html>
