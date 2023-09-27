@@ -22,7 +22,7 @@
  	</select>
 	
 	<select id="commentsList" parameterType="long"
-		resultType="org.iclass.mvc.dto.CommunityComments">
+		resultType="CommunityComments">
 		
 		select *
 		from CommunityComments
