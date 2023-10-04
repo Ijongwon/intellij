@@ -6,10 +6,7 @@ import java.util.Map;
 
 import org.iclass.mvc.dao.CommunityCommentsMapper;
 import org.iclass.mvc.dao.CommunityMapper;
-import org.iclass.mvc.dto.Community;
-import org.iclass.mvc.dto.CommunityComments;
-import org.iclass.mvc.dto.PageRequestDTO;
-import org.iclass.mvc.dto.Paging;
+import org.iclass.mvc.dto.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +31,17 @@ public class CommunityService {
 		//페이지 목록 구현은 예정.
 		return list;
 	}
+
+	//페이지 목록과 글 목록을 저장하는 DTO 를 리턴타입으로 합니다.
+	public PageResponseDTO listWithSearch(PageRequestDTO pageRequestDTO){
+		pageRequestDTO.setSize(5);
+		pageRequestDTO.setDatas();
+		List<Community> list = dao.pagelist(pageRequestDTO);
+		PageResponseDTO responseDTO = PageResponseDTO.of(pageRequestDTO,dao.count(pageRequestDTO),5);
+		responseDTO.setList(list);
+		return responseDTO;
+	}
+
 
 	//글 읽기
 	public Community read(long idx) {
