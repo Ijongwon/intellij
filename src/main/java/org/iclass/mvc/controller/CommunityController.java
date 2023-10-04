@@ -2,6 +2,7 @@ package org.iclass.mvc.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.iclass.mvc.dto.Community;
+import org.iclass.mvc.dto.PageRequestDTO;
 import org.iclass.mvc.service.CommunityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class CommunityController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+   /* @GetMapping("/list")
     public void list(
             @RequestParam(defaultValue = "1") int page,
             Model model){
@@ -28,7 +29,7 @@ public class CommunityController {
         model.addAttribute("paging", service.pagelist(page).get("paging"));
         model.addAttribute("today", LocalDate.now());
 
-    }
+    }*/
     @GetMapping("/read")
     public void read(long idx, @ModelAttribute("page") int page, Model model){
         model.addAttribute("vo",service.read(idx));
@@ -48,6 +49,9 @@ public class CommunityController {
         return "redirect:/community/list";
     }
 
+    @GetMapping("/list")
+    public void pagelist(PageRequestDTO pageRequestDTO){
 
+    }
 
 }
