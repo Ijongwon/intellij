@@ -21,5 +21,6 @@ public class BookUser {
 	private String email;
 	private String age;
 	private String password;
+	private LocalDate reg_date;
 
 }
