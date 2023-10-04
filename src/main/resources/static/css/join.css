@@ -39,7 +39,7 @@ td:first-child > label {
     cursor: pointer;
 }
 
-button:hover {
+#join button:hover {
     background-color: rgb(75,7,52);
 }
 td:nth-child(2) >label {

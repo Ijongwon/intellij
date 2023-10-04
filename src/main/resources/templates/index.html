@@ -6,9 +6,18 @@
 </head>
 <body>
 <h3>타임리프 샘플</h3>
-<a href="/sample/hello">go hello</a>
+<a href="sample/hello">go hello</a>
+<a href="sample/spring">go spring</a>
+<a href="sample/spring?name=momo&age=23">go spring2</a>
+<a href="sample/spring?title=하이&writer=momo">go spring3</a>
 <hr>
 <h3>커뮤니티</h3>
 <a href="community/list">커뮤니티</a>
+<a href="member/join">회원가입</a>
+<script type="text/javascript" th:inline ="javascript">
+    const message = [[${alert}]];
+    if(message !==null)
+        alert(message)
+</script>
 </body>
 </html>
