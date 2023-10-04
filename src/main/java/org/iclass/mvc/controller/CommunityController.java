@@ -3,6 +3,7 @@ package org.iclass.mvc.controller;
 import lombok.extern.log4j.Log4j2;
 import org.iclass.mvc.dto.Community;
 import org.iclass.mvc.dto.PageRequestDTO;
+import org.iclass.mvc.dto.PageResponseDTO;
 import org.iclass.mvc.service.CommunityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,15 @@ public class CommunityController {
     }
 
     @GetMapping("/list")
-    public void pagelist(PageRequestDTO pageRequestDTO){
+    public void pagelist(PageRequestDTO pageRequestDTO,Model model){
+        log.info(">>>>>>> pageRequestDTO : {}" , pageRequestDTO);
+        PageResponseDTO responseDTO = service.listWithSearch(pageRequestDTO);
+        responseDTO.getList().forEach(i ->{
+            log.info(">>>>> 글 : {}", i);
+        });
+        model.addAttribute("list",responseDTO.getList());
+        model.addAttribute("paging",responseDTO);
+        model.addAttribute("page",pageRequestDTO.getPage());
 
     }
 
