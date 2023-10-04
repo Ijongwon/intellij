@@ -8,6 +8,7 @@ import org.iclass.mvc.dao.CommunityCommentsMapper;
 import org.iclass.mvc.dao.CommunityMapper;
 import org.iclass.mvc.dto.Community;
 import org.iclass.mvc.dto.CommunityComments;
+import org.iclass.mvc.dto.PageRequestDTO;
 import org.iclass.mvc.dto.Paging;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,28 +25,14 @@ public class CommunityService {
 	private final CommunityCommentsMapper cmtdao;
 	
 	
-	public Map<String,Object> pagelist(int page){
-		//만들어진 페이지리스트와 Paging 정보를 같이 리턴하기 위해 
-		//List<Community> 에서 Map으로 변경함.
-		
-		int pageSize=5;		//pageSize 를 15 또는 10으로 변경해서 실행해 봅시다.
-		int totalCount = dao.count();
-		
-		//위의 값들을 이용해서 Paging 객체를 생성하면서 다른 필드값을 계산합니다.
-		Paging paging = new Paging(page, totalCount, pageSize);
-		
-		//pagelist() 메소드를 실행하기 위한 Map을 생성합니다.
-		Map<String,Integer> map = new HashMap<>();
-		map.put("start",paging.getStartNo());
-		map.put("end",paging.getEndNo());
-		
-		List<Community> list = dao.pagelist(map);
-		
-		Map<String,Object> result = new HashMap<>(); 
-		result.put("paging", paging);
-		result.put("list", list);
-		
-		return result;
+	public List<Community> pagelist(PageRequestDTO pageRequestDTO){
+
+		pageRequestDTO.setSize(5);		// 한 페이지에 보이는 글의 갯수 설정
+		pageRequestDTO.setDatas();		//start와 end 계산
+		List<Community>	list = dao.pagelist(pageRequestDTO);	//글 목록
+
+		//페이지 목록 구현은 예정.
+		return list;
 	}
 
 	//글 읽기
