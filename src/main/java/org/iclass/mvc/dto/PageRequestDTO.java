@@ -36,5 +36,9 @@ public class PageRequestDTO {
 	public void setDatas(){			// 오라클에서만 필요합니다. mysql은 쉽게 할수 있는 limit 라는 연산자가 있습니다.
 		start= (page-1)* size+1;    //글목록 시작행번호(rownum)
 		end= start + (size-1);
+
+		//String "tc" 와 같이 view 에서 받은 파라미터 값은 배열로 변경
+		if(type != null && type.isEmpty() && !type.equals("a"))		//type = "a" 를 전체로 할 예정.
+			types = type.split("");			//"tc"를 new String[]{"t","c"} 로 변환합니다.
 	}
 }
