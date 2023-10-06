@@ -24,8 +24,8 @@ public class PageResponseDTO {
 
     public static PageResponseDTO of(PageRequestDTO dto,int totalCount, int pageSize){
         //static 메소드이므로 static 변수만 사용할 수 있기 때문에 totalPage,startPage, endPage 를 지역변수로 선언합니다.
-        int totalPage = (int)Math.ceil((double)totalCount/pageSize);    //ceil 은 올림입니다.
-        int startPage = (dto.getPage()-1)/pageSize*pageSize+1;          //페이지번호 리스트 pageSize 만큼.
+        int totalPage = (int)Math.ceil((double)totalCount/dto.getSize()); //ceil 은 올림입니다.
+        int startPage = (dto.getPage()-1)/pageSize*pageSize+1;          //페이지번호 리스트 pageSize 만큼. ceil은 올림입니다.
                         //현재 페이지에 대한 페이지 목록 시작 값 계산 : 현재페이지가 1~10 일때는 startPage=1, 11~20일 때는 startPage = 11
         int endPage = Math.min(startPage+pageSize-1,totalPage);
 
